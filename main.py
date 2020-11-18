@@ -1,4 +1,5 @@
 import pandas as pd
+
 pd.set_option('display.max_rows', None)
 pd.set_option('display.max_columns', 25)
 pd.set_option('display.expand_frame_repr', False)
@@ -22,12 +23,12 @@ employees_df.drop(columns=['FIRST_NAME', 'LAST_NAME'], inplace=True)
 
 print('\n' * 1)
 print('Display employees full_name')
-print(employees_df)
+print(employees_df.head(10))
 
 # Display employees who have comissions
 print('\n' * 1)
 print('Display employees who have comissions_pct')
-print(employees_df[pd.notna(employees_df['COMMISSION_PCT'])])
+print(employees_df[pd.notna(employees_df['COMMISSION_PCT'])].head(10))
 
 # Display the salary of Jennifer Whalen
 print('\n' * 1)
@@ -55,19 +56,19 @@ print(employees_df[mask1 & mask2][['FULL_NAME', 'DEPARTMENT_ID', 'SALARY']])
 print('\n' * 1)
 print('Display the employees and the name of their managers_id')
 manager_df = employees_df[['EMPLOYEE_ID', 'FULL_NAME', 'MANAGER_ID']]
-print(manager_df)
+print(manager_df.head(20))
 
 print('\n' * 1)
 print('Display the employees and the name of their managers_names')
 manager_name = pd.merge(manager_df, manager_df, left_on=['MANAGER_ID'], right_on=['EMPLOYEE_ID'])
 
-print(manager_name)
+print(manager_name.head(20))
 
 print('\n' * 2)
 
 manager_name = manager_name[manager_name.columns[[0, 1, 2, 4]]]
 manager_name.columns = ['EMPLOYEE_ID', 'EMPLOYEE_FULL_NAME', 'MANAGER_ID', 'MANAGER_FULL_NAME']
-print(manager_name)
+print(manager_name.head(20))
 
 
 
