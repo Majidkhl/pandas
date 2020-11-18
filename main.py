@@ -44,6 +44,13 @@ print('\n' * 1)
 print('Display the employees of department 50 and salary > 3000')
 print(employees_df.query('DEPARTMENT_ID == 50').query('SALARY > 3000')[['FULL_NAME', 'DEPARTMENT_ID', 'SALARY']])
 
+# Afficher le nom complet des employés qui sont dans le départment 50 et qui ont un salaire > 3000 en utilisnat mask
+print('\n' * 1)
+print('Display the employees of department 50 and salary > 3000 using a mask')
+mask1 = employees_df['DEPARTMENT_ID'] == 50
+mask2 = employees_df['SALARY'] > 3000
+print(employees_df[mask1 & mask2][['FULL_NAME', 'DEPARTMENT_ID', 'SALARY']])
+
 # Afficher le nom complet des managers
 print('\n' * 1)
 print('Display the employees and the name of their managers_id')
@@ -55,6 +62,8 @@ print('Display the employees and the name of their managers_names')
 manager_name = pd.merge(manager_df, manager_df, left_on=['MANAGER_ID'], right_on=['EMPLOYEE_ID'])
 
 print(manager_name)
+
+print('\n' * 2)
 
 manager_name = manager_name[manager_name.columns[[0, 1, 2, 4]]]
 manager_name.columns = ['EMPLOYEE_ID', 'EMPLOYEE_FULL_NAME', 'MANAGER_ID', 'MANAGER_FULL_NAME']
